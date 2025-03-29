@@ -17,9 +17,11 @@
             <option value="python">Python</option>
         </select>
     </nav>
+
     <div class="container">
         <textarea id="codeInput" placeholder="Enter your code here..."></textarea>
         <button onclick="compileAndRun()">Run Code</button>
+        
         <div class="output-container">
             <div class="output-section">
                 <h2>Converted Code:</h2>
@@ -30,7 +32,19 @@
                 <pre id="output"></pre>
             </div>
         </div>
+
+        <div class="keywords-section">
+            <h2>Custom Language Keywords</h2>
+            <ul>
+                <li><strong>maano</strong> - Declare a variable (e.g., <code>maano x = 10;</code>)</li>
+                <li><strong>jabtak</strong> - Loop until a condition is true (e.g., <code>jabtak (x < 10)</code>)</li>
+                <li><strong>agar</strong> - Conditional statement (e.g., <code>agar (x > 5) { ... }</code>)</li>
+                <li><strong>warna</strong> - Else statement (e.g., <code>warna { ... }</code>)</li>
+                <li><strong>likho</strong> - Print to output (e.g., <code>likho("Hello, World!")</code>)</li>
+            </ul>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

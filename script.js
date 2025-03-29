@@ -1,10 +1,8 @@
 function lexer(input) {
     const tokens = [];
     let position = 0;
-
     while (position < input.length) {
         let char = input[position];
-
         if (char === ' ') {
             position++;
             continue;
@@ -93,7 +91,7 @@ function parser(tokens) {
             const statement = parseStatement();
             if (statement) body.push(statement);
         }
-        tokens.shift(); // Consume '}'
+        tokens.shift(); 
         return body;
     }
 
@@ -102,10 +100,10 @@ function parser(tokens) {
 
         if (!token) return null;
 
-        // Variable Declaration (maano x = 5)
+       
         if (token.type === 'keyword' && token.value === 'maano') {
             const identifier = tokens.shift();
-            tokens.shift(); // Consume '='
+            tokens.shift(); 
             const value = parseExpression();
             return {
                 type: 'declaration',
@@ -114,7 +112,6 @@ function parser(tokens) {
             };
         }
 
-        // Assignment (a = a + 1)
         if (token.type === 'identifier') {
             const name = token.value;
             if (tokens[0] && tokens[0].value === '=') {
@@ -128,7 +125,7 @@ function parser(tokens) {
             }
         }
 
-        // Print Statement (likho "Hello")
+      
         if (token.type === 'keyword' && token.value === 'likho') {
             const value = tokens.shift();
             if (value.type === 'string') {
@@ -145,19 +142,19 @@ function parser(tokens) {
             };
         }
 
-        // If-Else Statement (agar x < y { ... } warna { ... })
+       
         if (token.type === 'keyword' && token.value === 'agar') {
             const conditionLeft = tokens.shift();
             const conditionOperator = tokens.shift();
             const conditionRight = tokens.shift();
 
-            tokens.shift(); // Consume '{'
+            tokens.shift(); 
             const body = parseBlock();
 
             let elseBody = [];
             if (tokens.length > 0 && tokens[0].value === 'warna') {
                 tokens.shift();
-                tokens.shift(); // Consume '{'
+                tokens.shift(); 
                 elseBody = parseBlock();
             }
 
@@ -173,7 +170,7 @@ function parser(tokens) {
             };
         }
 
-        // While Loop (jabtak a < 10 { ... })
+    
         if (token.type === 'keyword' && token.value === 'jabtak') {
             const conditionLeft = tokens.shift();
             const conditionOperator = tokens.shift();
@@ -280,8 +277,6 @@ function compileAndRun() {
 
         eval(jsCode); 
         console.log = originalConsoleLog;
-
-       
         outputElement.textContent = consoleOutput.trim();
     } catch (error) {
         outputElement.textContent = `Error: ${error.message}`;
